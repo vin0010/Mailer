@@ -1,5 +1,7 @@
 package com.mailer.service;
 
+import java.io.File;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -33,11 +35,11 @@ public class NotificationService {
 			maxAttemptsExpression = "#{${mailer.retry.maxAttempts}}", backoff = @Backoff(delayExpression = "#{${mailer.retry.backOffDelay}}"))
 	public void sendNotification(Message mail){
         System.out.println("Sending email...");
-        
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
         	MimeMessageHelper mailMessage = new MimeMessageHelper(message, true);
-        	mailMessage.addAttachment("test.txt", FetchFile.getResource(mail.getUri()));
+        	File file = HttpDownloadUtility.downloadFile(mail.getUri().toString());
+        	mailMessage.addAttachment(file.getName(), file);
         	mailMessage.setTo(mail.getTo());
         	mailMessage.setFrom(mail.getFrom());
 			mailMessage.setSubject(mail.getSubject());

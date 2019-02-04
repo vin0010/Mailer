@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mailer.domain.Message;
 import com.mailer.producer.MessageProducer;
 
+import io.swagger.annotations.Api;
+
 @RestController
 public class MailController {
 

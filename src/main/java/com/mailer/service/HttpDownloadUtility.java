@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import com.google.common.io.Files;
  
 /**
  * A utility that downloads a file from a URL.
@@ -18,9 +20,10 @@ public class HttpDownloadUtility {
      * Downloads a file from a URL
      * @param fileURL HTTP URL of the file to be downloaded
      * @param saveDir path of the directory to save the file
+     * @return 
      * @throws IOException
      */
-    public static void downloadFile(String fileURL, String saveDir)
+    public static File downloadFile(String fileURL)
             throws IOException {
         URL url = new URL(fileURL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -30,15 +33,14 @@ public class HttpDownloadUtility {
         if (responseCode == HttpURLConnection.HTTP_OK) {
             String fileName = "";
             String disposition = httpConn.getHeaderField("Content-Disposition");
-            String contentType = httpConn.getContentType();
+//            String contentType = httpConn.getContentType();
             int contentLength = httpConn.getContentLength();
  
             if (disposition != null) {
                 // extracts file name from header field
-                int index = disposition.indexOf("filename=");
-                if (index > 0) {
-                    fileName = disposition.substring(index + 10,
-                            disposition.length() - 1);
+            	int start = disposition.indexOf("\"", disposition.indexOf("filename=\"")) +1;
+                if (start > 0) {
+                    fileName = disposition.substring(start, disposition.indexOf("\"", start));
                 }
             } else {
                 // extracts file name from URL
@@ -46,17 +48,18 @@ public class HttpDownloadUtility {
                         fileURL.length());
             }
  
-            System.out.println("Content-Type = " + contentType);
+//            System.out.println("Content-Type = " + contentType);
             System.out.println("Content-Disposition = " + disposition);
             System.out.println("Content-Length = " + contentLength);
             System.out.println("fileName = " + fileName);
  
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();
-            String saveFilePath = saveDir + File.separator + fileName;
-             
+            
+            File file = new File(Files.createTempDir(), fileName);
+            
             // opens an output stream to save into file
-            FileOutputStream outputStream = new FileOutputStream(saveFilePath);
+            FileOutputStream outputStream = new FileOutputStream(file);
  
             int bytesRead = -1;
             byte[] buffer = new byte[BUFFER_SIZE];
@@ -66,11 +69,15 @@ public class HttpDownloadUtility {
  
             outputStream.close();
             inputStream.close();
- 
             System.out.println("File downloaded");
+            return file;
         } else {
             System.out.println("No file to download. Server replied HTTP code: " + responseCode);
         }
         httpConn.disconnect();
+		return null;
     }
+    public static void main(String[] args) throws IOException {
+    	downloadFile("https://drive.google.com/uc?id=1OjVXW2xK9eHcBAjJJygtcyYtiQBwX-tt&export=download");
+	}
 }
