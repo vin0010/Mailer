@@ -5,11 +5,17 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
+
+import com.mailer.controller.MailController;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
 @EnableAsync
+//@ComponentScan(basePackages="com.mailer.consumer.config.SwaggerConfig")
 public class AsyncMailer {
 
 	public static void main(String[] args) {
