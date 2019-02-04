@@ -9,7 +9,7 @@ import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 
-import com.mailer.domain.Message;
+import com.mailer.domain.Mail;
 import com.mailer.service.NotificationService;
 
 import org.springframework.kafka.support.KafkaHeaders;
@@ -28,7 +28,7 @@ public class MessageConsumer {
 	private CountDownLatch greetingLatch = new CountDownLatch(1);
 
 	@KafkaListener(topics = "${message.topic.name}", groupId = "foo", containerFactory = "fooKafkaListenerContainerFactory")
-	public void listenGroupFoo(Message message) throws Exception {
+	public void listenGroupFoo(Mail message) throws Exception {
 		System.out.println("-------Received Messasge in group 'foo': " + message);
 		System.out.println("About to send mail");
 		notificationService.sendNotification(message);

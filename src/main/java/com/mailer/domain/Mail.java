@@ -2,7 +2,7 @@ package com.mailer.domain;
 
 import java.net.URI;
 
-public class Message {
+public class Mail {
 	private String from;
 	private String to;
 	private String subject;

@@ -10,7 +10,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import com.mailer.domain.Message;
+import com.mailer.domain.Mail;
 
 @Qualifier
 public class MessageProducer {
@@ -19,7 +19,7 @@ public class MessageProducer {
 	private KafkaTemplate<String, String> kafkaTemplate;
 
 	@Autowired
-	private KafkaTemplate<String, Message> messageKafkaTemplate;
+	private KafkaTemplate<String, Mail> messageKafkaTemplate;
 
 	@Value(value = "${message.topic.name}")
 	private String topicName;
@@ -43,7 +43,7 @@ public class MessageProducer {
 		});
 	}
 
-	public void sendMessage(Message message) {
+	public void sendMessage(Mail message) {
 //        	messageKafkaTemplate.flush();
 		messageKafkaTemplate.send(topicName, new Random().nextLong() + "", message);
 	}

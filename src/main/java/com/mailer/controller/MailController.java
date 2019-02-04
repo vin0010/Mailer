@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mailer.domain.Message;
+import com.mailer.domain.Mail;
 import com.mailer.producer.MessageProducer;
 
 import io.swagger.annotations.Api;
@@ -24,7 +24,7 @@ public class MailController {
 
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public String send(@RequestBody Message message) {
+	public String send(@RequestBody Mail message) {
 		messageProducer.sendMessage(message);
 		logger.info("Received mail details in rest call");
 		System.out.println("Received message in rest:" + message);

@@ -10,7 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import com.mailer.domain.Message;
+import com.mailer.domain.Mail;
 import com.mailer.producer.MessageProducer;
 
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public class KafkaProducerConfig {
     }
     
     @Bean
-    public ProducerFactory<String, Message> greetingProducerFactory() {
+    public ProducerFactory<String, Mail> greetingProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -51,7 +51,7 @@ public class KafkaProducerConfig {
     }
     
     @Bean
-    public KafkaTemplate<String, Message> greetingKafkaTemplate() {
+    public KafkaTemplate<String, Mail> greetingKafkaTemplate() {
         return new KafkaTemplate<>(greetingProducerFactory());
     }
     

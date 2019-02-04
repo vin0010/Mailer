@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.EnableRetry;
 
-import com.mailer.domain.Message;
+import com.mailer.domain.Mail;
 import com.sun.mail.smtp.SMTPAddressFailedException;
 
 @Service
@@ -33,7 +33,7 @@ public class NotificationService {
 	@Retryable(
 			value = { Exception.class }, 
 			maxAttemptsExpression = "#{${mailer.retry.maxAttempts}}", backoff = @Backoff(delayExpression = "#{${mailer.retry.backOffDelay}}"))
-	public void sendNotification(Message mail){
+	public void sendNotification(Mail mail){
         System.out.println("Sending email...");
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
