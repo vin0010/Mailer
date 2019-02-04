@@ -38,11 +38,11 @@ public class KafkaProducerConfig {
 //    }
     
     @Bean
-    public ProducerFactory<String, String> mailProducerFactory() {
+    public ProducerFactory<String, Mail> mailProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
     
@@ -52,8 +52,8 @@ public class KafkaProducerConfig {
     }
     
     @Bean
-    public KafkaTemplate<String, String> mailKafkaTemplate() {
-        return new KafkaTemplate<String, String>(mailProducerFactory());
+    public KafkaTemplate<String, Mail> mailKafkaTemplate() {
+        return new KafkaTemplate<String, Mail>(mailProducerFactory());
     }
     
 }

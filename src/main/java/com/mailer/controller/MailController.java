@@ -22,7 +22,7 @@ public class MailController {
 
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public String send(@RequestBody String message) {
+	public String send(@RequestBody Mail message) {
 		messageProducer.sendMessage(message);
 		logger.info("Received mail details in rest call");
 		System.out.println("Received message in rest:" + message);

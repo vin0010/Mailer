@@ -22,7 +22,7 @@ public class MessageProducer {
 //	private KafkaTemplate<String, String> kafkaTemplate;
 
 	@Autowired
-	private KafkaTemplate<String, String> messageKafkaTemplate;
+	private KafkaTemplate<String, Mail> messageKafkaTemplate;
 
 	@Value(value = "${kafka.mail.topic.name}")
 	private String topicName;
@@ -46,7 +46,7 @@ public class MessageProducer {
 		});
 	}*/
 
-	public void sendMessage(String message) {
+	public void sendMessage(Mail message) {
 //        	messageKafkaTemplate.flush();
 		messageKafkaTemplate.send(topicName, new Random().nextLong() + "", message);
 	}
