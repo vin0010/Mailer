@@ -15,16 +15,16 @@ To make sure things are not over engineered, for starters it uses single consume
 - No Authentication required.
 
 ## Tools used
-- **Spring boot** framework used to write microservice
+- **Spring boot** framework to write microservice
 - **Kafka** for stream processing
-- **Spring Retry** to automatically retry a failed operation  
-- **Embedded kafka** for testing
+- **Spring Retry** to automate retry behavior for failed operation  
+- **Embedded kafka** for kafka integration testing
 - **Junit 4** for unit tests
 - **Swagger** for API documentation
 - **Maven** for build
-- **Google guava** for commons library
+- **Google guava** to use commons library
 - **Spring mail** to send mail
-- **Mockito** for unit tests mock
+- **Mockito** for unit tests mocks
 - **HttpURLConnection** used to download attachment binaries
 - **HMailServer** used as a local web mail server.
 
