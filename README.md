@@ -6,7 +6,7 @@ Mailer is a Micro Service responsible of Asynchronous sending of Emails
 ## Description
 This code base provides a micro service capable of sending mails asynchronously. It has been developed using spring boot framework and uses Apache Kafka for messaging.
 
-To make sure things are not over engineered, for starters it uses single consumer and single producer to take care of mail requests.  
+To make sure things are not over engineered, for starters it uses single consumer and single producer to take care of mail requests.
 
 
 ## Requirement
@@ -27,22 +27,40 @@ To make sure things are not over engineered, for starters it uses single consume
 - **Spring mail** to send mail
 - **Mockito** for unit tests mock
 - **HttpURLConnection** used to download attachment binaries
+- **HMailServer** used as a local web mail server.
 
-# Architecture
+## Architecture
 ![Architecture](Architecture.jpg)
 
-# Scalability
+## Scalability
 - Scalability aspect has been covered since this microservice can scale vertically or horizontally by either spin off more instances with load balancer or introduce more consumers which deal with mail sending asynchronously.
 
-# Future Suggestions
--
-
+## Future Suggestions
+- Number of consumers can be increased since email sending can be run in parallel without any fuss
+- Better failure notification mechanism to make sure sender aware of all failures
+- New API can be introduced to give statistics of sent/failed mails
+- New Health API can be introduced to monitor health of Kafka producers, Consumers, Mail service etc.  
 
 ## Assumptions
 - If a mail failed after n(configurable in application.properties) retries, its considered a failure.
 - Attachment can either be an direct url(https://google.com/robots.txt) or a generic one(https://drive.google.com/uc?id=1OjVXW2xK9eHcBAjJJygtcyYtiQBwX-tt&export=download)
 - If attachment URI is a direct url, file name will be received from url itself
 - If attachment URI is a generic one, file name will be received from content-disposition header.
-- If attachment fetching failed,  
-- Failed records/attempts are need not be persisted in any form inside the application
--
+- If attachment fetching failed without any exception, it will ,
+- Failed records/attempts are need not be persisted in any form inside the application since kafka will store them in memory and recovery even after a complete crash is possible
+- Simplistic approach followed during development towards delivery
+- Retry to download attachment is no implemented
+
+## Mail Server
+- HmailServer used for development in local machine with a configurable domain and user accounts
+- Webmail used as web mail client to check mails and attachments
+
+## Swagger
+- http://localhost:9090/swagger-ui.html
+
+## Integration Tests
+- Integration tests require running kafka and zookeper in place.
+
+## Extras
+- Number of retries to send mail can be configured via mailer.retry.maxAttempts
+- Time gap between retries can be configured via mailer.retry.backOffDelay
