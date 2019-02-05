@@ -1,4 +1,4 @@
-package com.mailer.embeddedkafkatests;
+package com.mailer.embeddedkafkaintegrationtests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

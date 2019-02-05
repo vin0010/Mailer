@@ -16,6 +16,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.mailer.model.Mail;
+import com.mailer.serializer.MailDeserializer;
 
 /**
  * @author Vinoth.Gopu
@@ -47,7 +48,7 @@ public class KafkaMailConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(Mail.class));
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new MailDeserializer());
     }
 
     
