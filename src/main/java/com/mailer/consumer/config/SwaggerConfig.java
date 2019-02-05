@@ -14,12 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 	@Bean
 	public Docket api() {
-		System.out.println("###################################"
-				+ "###############################"
-				+ "######################"
-				+ "#############"
-				+ "########"
-				+ "####");
 		return new Docket(
 				DocumentationType.SWAGGER_2)
 				.select()

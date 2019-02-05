@@ -30,7 +30,7 @@ public class MailService {
 	@Retryable(
 			value = { Exception.class }, 
 			maxAttemptsExpression = "#{${mailer.retry.maxAttempts}}", backoff = @Backoff(delayExpression = "#{${mailer.retry.backOffDelay}}"))
-	public void sendNotification(Mail mail, File file){
+	public String sendNotification(Mail mail, File file){
         System.out.println("Sending email...");
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
@@ -45,7 +45,8 @@ public class MailService {
 			e.printStackTrace();
 		}
 		javaMailSender.send(message);
-		//TODO how to get acknowlwdgement that it failed/succeeded
 		System.out.println("Email Sent!");
+		return "Request Accepted!";
+		//TODO how to get acknowlwdgement that it failed/succeeded
 	}
 }

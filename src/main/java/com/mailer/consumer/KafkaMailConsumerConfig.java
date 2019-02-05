@@ -3,7 +3,6 @@ package com.mailer.consumer;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.crypto.Data;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

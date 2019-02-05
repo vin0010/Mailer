@@ -8,12 +8,7 @@ import java.net.URL;
 
 import com.google.common.io.Files;
  
-/**
- * A utility that downloads a file from a URL.
- * @author www.codejava.net
- *
- */
-public class HttpDownloadUtility {
+public class AttachmentDownloaderUtility {
     private static final int BUFFER_SIZE = 4096;
  
     /**
@@ -77,7 +72,4 @@ public class HttpDownloadUtility {
         httpConn.disconnect();
 		return null;
     }
-    public static void main(String[] args) throws IOException {
-    	downloadFile("https://drive.google.com/uc?id=1OjVXW2xK9eHcBAjJJygtcyYtiQBwX-tt&export=download");
-	}
 }
