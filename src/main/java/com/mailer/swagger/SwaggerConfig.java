@@ -30,6 +30,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
+		@SuppressWarnings("rawtypes")
 		List<VendorExtension> vendorExtensions = new ArrayList<VendorExtension>();
 		
 		ApiInfo apiInfo = new ApiInfo(

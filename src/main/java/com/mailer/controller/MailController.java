@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mailer.model.Mail;
 import com.mailer.producer.KafkaMessageProducer;
 
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Example;
-import io.swagger.annotations.ExampleProperty;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 
-
-
+@Api("End point to send mails asynchronously")
 @RestController
 public class MailController {
 
@@ -27,12 +26,12 @@ public class MailController {
 	@Autowired
 	private KafkaMessageProducer messageProducer;
 
-	@ApiParam(
-			value = "A JSON value representing a transaction. An example of the expected schema can be found down here. The fields marked with an * means that they are required."
-			, examples = @Example(
-					value = @ExampleProperty(mediaType = "JSON", value = "{foo: whatever, bar: whatever2}")
-					)
-			)
+	@ApiOperation(value = "Send mails",response = String.class, consumes="JSON", tags="mail")
+    @ApiResponses( 
+		value = {
+				@ApiResponse(code = 202, message = "Send Email request accepted"),
+		}
+	)
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public String send(@RequestBody Mail message) {

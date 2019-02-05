@@ -1,8 +1,6 @@
 package com.mailer.embeddedkafkatests;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;
-import static org.springframework.kafka.test.assertj.KafkaConditions.value;
 import static org.springframework.kafka.test.hamcrest.KafkaMatchers.hasValue;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
