@@ -22,21 +22,20 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mailer.consumer.KafkaMailConsumer;
-import com.mailer.model.Mail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext
-public class KafkaTest {
+public class EmbeddedKafkaSampleIntegrationTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(KafkaTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedKafkaSampleIntegrationTest.class);
 
 	private static String RECEIVER_TOPIC = "receiver.t";
 
 	@Autowired
 	private KafkaMailConsumer receiver;
 
-	private KafkaTemplate<String, Mail> template;
+	private KafkaTemplate<String, String> template;
 
 	@ClassRule
 	public static EmbeddedKafkaRule embeddedKafka = new EmbeddedKafkaRule(1, true, RECEIVER_TOPIC);
@@ -48,7 +47,7 @@ public class KafkaTest {
 				.senderProps(embeddedKafka.getEmbeddedKafka().getBrokersAsString());
 
 		// create a Kafka producer factory
-		ProducerFactory<String, Mail> producerFactory = new DefaultKafkaProducerFactory<String, Mail>(
+		ProducerFactory<String, String> producerFactory = new DefaultKafkaProducerFactory<String, String>(
 				senderProperties);
 
 		// create a Kafka template
@@ -62,9 +61,7 @@ public class KafkaTest {
 	public void testReceive() throws Exception {
 		// send the message
 		String greeting = "This message needs to be delivered!";
-		Mail mail = new Mail();
-		mail.setBody("asdasdasdasdsad");
-		template.sendDefault(mail);
+		template.sendDefault(greeting);
 		LOGGER.debug("test-sender sent message='{}'", greeting);
 
 		receiver.latch.await(1000, TimeUnit.MILLISECONDS);
