@@ -34,7 +34,7 @@ To make sure things are not over engineered, for starters it uses single consume
 ## Scalability
 - Scalability aspect has been covered since this microservice can scale vertically or horizontally by either spin off more instances with load balancer or introduce more consumers which deal with mail sending asynchronously.
 
-## Future Suggestions
+## Future Improvements
 - Number of consumers can be increased since email sending can be run in parallel without any fuss
 - Better failure notification mechanism to make sure sender aware of all failures
 - New API can be introduced to give statistics of sent/failed mails
@@ -42,17 +42,18 @@ To make sure things are not over engineered, for starters it uses single consume
 - Caching can be introduced to avoid multiple downloads of same attachment.
 - Code can be modified such that consumers can be increased based on number of requests.
 - Freemaker template can be used when sending html content
+- Mail controller and producer can be combined into a micro service and group of consumers can be put into another microservice and multiple instances can be deployed with load balancers  
 
 ## Mail Server
 - HmailServer used for development in local machine with a configurable domain and user accounts
 - Webmail used as web mail client to check mails and attachments
 
 ## Swagger
-- Use http://localhost:9090/swagger-ui.html to access swagger once deployed application
+- Use http://localhost:9090/swagger-ui.html to access swagger once application deployed
 
 ## Kafka
-- Follow https://medium.com/@shaaslam/installing-apache-kafka-on-windows-495f6f2fd3c8 to set up kafka in local
-- Follow https://medium.com/@shaaslam/installing-apache-zookeeper-on-windows-45eda303e835#.fgofwm6n6 to set up zookeeper
+- Follow [![Kafka Setup in Windows](Kafka Setup in Windows)](https://medium.com/@shaaslam/installing-apache-kafka-on-windows-495f6f2fd3c8) to set up kafka in local
+- Follow [![Zookeeper Setup in Windows](Zookeeper Setup in Windows)](https://medium.com/@shaaslam/installing-apache-zookeeper-on-windows-45eda303e835#.fgofwm6n6)  to set up zookeeper
 
 ## Integration Tests
 - Integration tests require running kafka and zookeeper in place.
