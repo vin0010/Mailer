@@ -2,6 +2,11 @@ package com.mailer.model;
 
 import java.net.URI;
 
+/**
+ * @author Vinoth.Gopu
+ *
+ * POJO for Mail
+ */
 public class Mail {
 	private String from;
 	private String to;

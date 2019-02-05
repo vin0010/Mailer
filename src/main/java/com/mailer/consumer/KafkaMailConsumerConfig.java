@@ -17,6 +17,11 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.mailer.model.Mail;
 
+/**
+ * @author Vinoth.Gopu
+ * 
+ * Kafka consumer configuration class
+ */
 @EnableKafka
 @Configuration
 public class KafkaMailConsumerConfig {
@@ -32,6 +37,11 @@ public class KafkaMailConsumerConfig {
     	return new KafkaMailConsumer();
     }
 
+    /**
+     * Method to get consumer factory to use inside listener container
+     * @param groupId
+     * @return DefaultKafkaConsumerFactory
+     */
     public ConsumerFactory<String, Mail> getConsumerFactory(String groupId) {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
@@ -41,6 +51,9 @@ public class KafkaMailConsumerConfig {
     }
 
     
+    /**
+     * @return kafka listener container to be used by the consumer
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Mail> mailKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Mail> factory = new ConcurrentKafkaListenerContainerFactory<>();

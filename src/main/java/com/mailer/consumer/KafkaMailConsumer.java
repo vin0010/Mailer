@@ -7,6 +7,12 @@ import org.springframework.kafka.annotation.KafkaListener;
 import com.mailer.model.Mail;
 import com.mailer.service.MailService;
 import com.mailer.utility.AttachmentDownloaderUtility;
+/**
+ * @author Vinoth.Gopu
+ * 
+ * Kafka consumer to poll topic and get messages if there are any
+ *
+ */
 public class KafkaMailConsumer {
 
 	@Autowired
@@ -18,8 +24,13 @@ public class KafkaMailConsumer {
     //can be used in case multiple listeners work together
     public java.util.concurrent.CountDownLatch latch = new java.util.concurrent.CountDownLatch(3);
 
+	/**
+	 * Listener method to retrieve and process messages
+	 * @param mail - mail pojo
+	 * @throws Exception
+	 */
 	@KafkaListener(topics = "${kafka.mail.topic.name}", groupId = "${kafka.mail.groupid}", containerFactory = "mailKafkaListenerContainerFactory")
-	public void listenGroupFoo(Mail mail) throws Exception {
+	public void mailListener(Mail mail) throws Exception {
 		System.out.println("---->Received Messasge in group " + groupId + ": " + mail);
 		System.out.println("About to send mail");
 		latch.countDown();

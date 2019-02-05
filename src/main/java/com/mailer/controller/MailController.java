@@ -18,6 +18,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
 
+/**
+ * @author Vinoth.Gopu
+ *
+ * REST Controller class to receive mail request. 
+ */
 @Api("End point to send mails asynchronously")
 @RestController
 public class MailController {
@@ -26,6 +31,10 @@ public class MailController {
 	@Autowired
 	private KafkaMessageProducer messageProducer;
 
+	/**
+	 * @param message Mail pojo
+	 * @return acknowledgement that the request for mail has been accepeted
+	 */
 	@ApiOperation(value = "Send mails",response = String.class, consumes="JSON", tags="mail")
     @ApiResponses( 
 		value = {

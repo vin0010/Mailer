@@ -35,9 +35,7 @@ public class MailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
         	MimeMessageHelper mailMessage = new MimeMessageHelper(message, true);
-        	if(file != null) {
-        		mailMessage.addAttachment(file.getName(), file);
-        	}
+    		mailMessage.addAttachment(file.getName(), file);
         	mailMessage.setTo(mail.getTo());
         	mailMessage.setFrom(mail.getFrom());
 			mailMessage.setSubject(mail.getSubject());

@@ -44,4 +44,5 @@ To make sure things are not over engineered, for starters it uses single consume
 - If attachment URI is a direct url, file name will be received from url itself
 - If attachment URI is a generic one, file name will be received from content-disposition header.
 - If attachment fetching failed,  
-- Failed records/attempts are need not to be persisted in any form inside the application
+- Failed records/attempts are need not be persisted in any form inside the application
+-

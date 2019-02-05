@@ -14,6 +14,12 @@ import org.springframework.kafka.core.KafkaTemplate;
 
 import com.mailer.model.Mail;
 
+/**
+ * @author Vinoth.Gopu
+ * 
+ * Kafka message producer which is used by the controller explicitly to send all incoming requests to topics.
+ * 
+ */
 public class KafkaMessageProducer {
 
 //	@Autowired
@@ -44,6 +50,9 @@ public class KafkaMessageProducer {
 		});
 	}*/
 
+	/**
+	 * @param message
+	 */
 	public void sendMessage(Mail message) {
 		messageKafkaTemplate.send(topicName, new Random().nextLong() + "", message);
 	}
