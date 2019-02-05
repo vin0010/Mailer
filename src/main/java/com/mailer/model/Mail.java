@@ -1,4 +1,4 @@
-package com.mailer.domain;
+package com.mailer.model;
 
 import java.net.URI;
 
@@ -67,5 +67,15 @@ public class Mail {
 	 */
 	public void setUri(URI uri) {
 		this.uri = uri;
+	}
+	@Override
+	public String toString() {
+		return "{"
+				+ "\"from\":" + this.getFrom() + "\""
+				+"\"to\";" + this.getTo() + "\""
+				+ "\"subject\":" + this.getSubject() + "\""
+				+ "\"body\":" + this.getBody() + "\""
+				+ "\"uri\":" + this.getUri() + "\""
+				+ "}";
 	}
 }

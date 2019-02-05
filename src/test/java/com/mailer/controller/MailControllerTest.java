@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.mailer.domain.Mail;
+import com.mailer.model.Mail;
 
 /**
  * @author Vinoth.Gopu
@@ -24,7 +24,7 @@ public class MailControllerTest {
 
 	/**
 	 * Test method for
-	 * {@link com.mailer.controller.MailController#send(com.mailer.domain.Mail)}.
+	 * {@link com.mailer.controller.MailController#send(com.mailer.model.Mail)}.
 	 * 
 	 * @throws Exception
 	 */

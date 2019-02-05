@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.mailer.utility.AttachmentDownloaderUtility;
+
 /**
  * @author Vinoth.Gopu
  *
@@ -18,7 +20,7 @@ public class AttachmentDownloaderUtilityIntegrationTest {
 
 	/**
 	 * Test method for
-	 * {@link com.mailer.service.AttachmentDownloaderUtility#downloadFile(java.lang.String)}.
+	 * {@link com.mailer.utility.AttachmentDownloaderUtility#downloadFile(java.lang.String)}.
 	 * 
 	 * @throws IOException
 	 */
@@ -33,7 +35,7 @@ public class AttachmentDownloaderUtilityIntegrationTest {
 	
 	/**
 	 * Test method for
-	 * {@link com.mailer.service.AttachmentDownloaderUtility#downloadFile(java.lang.String)}.
+	 * {@link com.mailer.utility.AttachmentDownloaderUtility#downloadFile(java.lang.String)}.
 	 * 
 	 * @throws IOException
 	 */

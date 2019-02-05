@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mailer.domain.Mail;
-import com.mailer.producer.MessageProducer;
+import com.mailer.model.Mail;
+import com.mailer.producer.KafkaMessageProducer;
 
 @RestController
 public class MailController {
 
 	private Logger logger = LoggerFactory.getLogger(MailController.class);
 	@Autowired
-	private MessageProducer messageProducer;
+	private KafkaMessageProducer messageProducer;
 
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.ACCEPTED)

@@ -13,7 +13,7 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.mailer.domain.Mail;
+import com.mailer.model.Mail;
 
 @Service
 @EnableRetry

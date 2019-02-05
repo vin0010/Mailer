@@ -3,20 +3,18 @@ package com.mailer.producer;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.SendResult;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
+//import org.springframework.kafka.support.SendResult;
+//import org.springframework.stereotype.Component;
+//import org.springframework.beans.factory.annotation.Qualifier;
+//import org.springframework.stereotype.Service;
+//import org.springframework.util.concurrent.ListenableFuture;
+//import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import com.mailer.domain.Mail;
+import com.mailer.model.Mail;
 
-//@Qualifier
-//@Component
-public class MessageProducer {
+public class KafkaMessageProducer {
 
 //	@Autowired
 //	private KafkaTemplate<String, String> kafkaTemplate;
@@ -47,7 +45,6 @@ public class MessageProducer {
 	}*/
 
 	public void sendMessage(Mail message) {
-//        	messageKafkaTemplate.flush();
 		messageKafkaTemplate.send(topicName, new Random().nextLong() + "", message);
 	}
 }

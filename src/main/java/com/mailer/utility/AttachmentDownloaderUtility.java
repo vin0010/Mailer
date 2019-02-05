@@ -1,4 +1,4 @@
-package com.mailer.service;
+package com.mailer.utility;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

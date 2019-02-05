@@ -14,7 +14,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.mailer.domain.Mail;
+import com.mailer.model.Mail;
 
 /**
  * @author Vinoth.Gopu
@@ -29,7 +29,7 @@ public class MailServiceTest {
 	private MailService mailService;
 	
 	/**
-	 * Test method for {@link com.mailer.service.MailService#sendNotification(com.mailer.domain.Mail, java.io.File)}.
+	 * Test method for {@link com.mailer.service.MailService#sendNotification(com.mailer.model.Mail, java.io.File)}.
 	 */
 	@Test
 	public final void testSendNotification() {

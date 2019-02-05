@@ -1,4 +1,4 @@
-package com.mailer.consumer.config;
+package com.mailer.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

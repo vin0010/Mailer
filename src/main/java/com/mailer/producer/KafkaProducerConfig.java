@@ -10,7 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import com.mailer.domain.Mail;
+import com.mailer.model.Mail;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +31,8 @@ public class KafkaProducerConfig {
     }
     
     @Bean
-    public MessageProducer messageProducer() {
-        return new MessageProducer();
+    public KafkaMessageProducer messageProducer() {
+        return new KafkaMessageProducer();
     }
     
     @Bean
