@@ -6,6 +6,8 @@ package com.mailer.serializer;
 import java.util.Map;
 
 import org.apache.kafka.common.serialization.Deserializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mailer.model.Mail;
@@ -16,6 +18,8 @@ import com.mailer.model.Mail;
  */
 public class MailDeserializer implements Deserializer<Mail> {
 
+	private Logger LOGGER = LoggerFactory.getLogger(MailDeserializer.class);
+			
 	/* (non-Javadoc)
 	 * @see org.apache.kafka.common.serialization.Deserializer#configure(java.util.Map, boolean)
 	 */
@@ -34,6 +38,7 @@ public class MailDeserializer implements Deserializer<Mail> {
 		try {
 			mail = mapper.readValue(data, Mail.class);
 		} catch (Exception e) {
+			LOGGER.error("Error in deserialisation of mail object");
 			e.printStackTrace();
 		}
 		return mail;

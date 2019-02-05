@@ -6,6 +6,8 @@ package com.mailer.serializer;
 import java.util.Map;
 
 import org.apache.kafka.common.serialization.Serializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mailer.model.Mail;
@@ -15,6 +17,7 @@ import com.mailer.model.Mail;
  * Serializer for Mail pojo
  */
 public class MailSerializer implements Serializer<Mail> {
+	private Logger LOGGER = LoggerFactory.getLogger(MailSerializer.class);
 
 	/* (non-Javadoc)
 	 * @see org.apache.kafka.common.serialization.Serializer#configure(java.util.Map, boolean)
@@ -34,6 +37,7 @@ public class MailSerializer implements Serializer<Mail> {
 		try {
 			mail = mapper.writeValueAsString(data).getBytes();
 		}catch (Exception e) {
+			LOGGER.error("Error in serialisation of mail object");
 			e.printStackTrace();
 		}
 		return mail;

@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -23,7 +25,8 @@ import com.mailer.model.Mail;
 @Service
 @EnableRetry
 public class MailService {
-
+	private Logger LOGGER = LoggerFactory.getLogger(MailService.class);
+	
 	private JavaMailSender javaMailSender;
 	
 	@Autowired
@@ -43,7 +46,7 @@ public class MailService {
 			value = { Exception.class }, 
 			maxAttemptsExpression = "#{${mailer.retry.maxAttempts}}", backoff = @Backoff(delayExpression = "#{${mailer.retry.backOffDelay}}"))
 	public String sendNotification(Mail mail, File file){
-        System.out.println("Sending email...");
+        LOGGER.info("Sending email....");
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
         	MimeMessageHelper mailMessage = new MimeMessageHelper(message, true);
@@ -53,11 +56,12 @@ public class MailService {
 			mailMessage.setSubject(mail.getSubject());
 			mailMessage.setText(mail.getBody());
 		} catch (Exception e) {
+			LOGGER.error("Exception going to retry!");
 			System.out.println("Going to retry!");
 			e.printStackTrace();
 		}
 		javaMailSender.send(message);
-		System.out.println("Email Sent!");
+		LOGGER.info("Email sent success fully.");
 		return "Request Accepted!";
 	}
 }

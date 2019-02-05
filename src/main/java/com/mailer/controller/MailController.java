@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponse;
 @RestController
 public class MailController {
 
-	private Logger logger = LoggerFactory.getLogger(MailController.class);
+	private Logger LOGGER = LoggerFactory.getLogger(MailController.class);
 	@Autowired
 	private KafkaMailProducer messageProducer;
 
@@ -45,8 +45,7 @@ public class MailController {
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public String send(@RequestBody Mail message) {
 		messageProducer.sendMessage(message);
-		logger.info("Received mail details in rest call");
-		System.out.println("Received message in rest:" + message);
+		LOGGER.info("Received message in rest:" + message);
 		return "Request Accepted!";
 	}
 }

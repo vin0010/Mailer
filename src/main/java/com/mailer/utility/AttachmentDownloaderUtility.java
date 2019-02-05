@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.io.Files;
  
 public class AttachmentDownloaderUtility {
@@ -20,6 +23,8 @@ public class AttachmentDownloaderUtility {
      */
     public static File downloadFile(String fileURL)
             throws IOException {
+    	Logger LOGGER = LoggerFactory.getLogger(AttachmentDownloaderUtility.class);
+    	
         URL url = new URL(fileURL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
         int responseCode = httpConn.getResponseCode();
@@ -53,11 +58,11 @@ public class AttachmentDownloaderUtility {
             			outputStream.write(buffer, 0, bytesRead);
             		}
             	}
-            	System.out.println("File downloaded");
+            	LOGGER.info("File downloaded successfully");
             	return file;
             }
         } else {
-            System.out.println("No file to download. Server replied HTTP code: " + responseCode);
+        	LOGGER.error("No file to download. Server replied HTTP code: " + responseCode);
         }
         httpConn.disconnect();
 		return null;
