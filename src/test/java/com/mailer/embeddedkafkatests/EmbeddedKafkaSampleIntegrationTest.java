@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -57,6 +58,7 @@ public class EmbeddedKafkaSampleIntegrationTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void testReceive() throws Exception {
 		// send the message
