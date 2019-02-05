@@ -28,8 +28,6 @@ public class AttachmentDownloaderUtility {
         if (responseCode == HttpURLConnection.HTTP_OK) {
             String fileName = "";
             String disposition = httpConn.getHeaderField("Content-Disposition");
-//            String contentType = httpConn.getContentType();
-            int contentLength = httpConn.getContentLength();
  
             if (disposition != null) {
                 // extracts file name from header field
@@ -43,29 +41,21 @@ public class AttachmentDownloaderUtility {
                         fileURL.length());
             }
  
-//            System.out.println("Content-Type = " + contentType);
-            System.out.println("Content-Disposition = " + disposition);
-            System.out.println("Content-Length = " + contentLength);
-            System.out.println("fileName = " + fileName);
- 
             // opens input stream from the HTTP connection
-            InputStream inputStream = httpConn.getInputStream();
-            
-            File file = new File(Files.createTempDir(), fileName);
-            
-            // opens an output stream to save into file
-            FileOutputStream outputStream = new FileOutputStream(file);
- 
-            int bytesRead = -1;
-            byte[] buffer = new byte[BUFFER_SIZE];
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
+            try(InputStream inputStream = httpConn.getInputStream()){
+            	File file = new File(Files.createTempDir(), fileName);
+            	
+            	// opens an output stream to save into file
+            	try(FileOutputStream outputStream = new FileOutputStream(file)){
+            		int bytesRead = -1;
+            		byte[] buffer = new byte[BUFFER_SIZE];
+            		while ((bytesRead = inputStream.read(buffer)) != -1) {
+            			outputStream.write(buffer, 0, bytesRead);
+            		}
+            	}
+            	System.out.println("File downloaded");
+            	return file;
             }
- 
-            outputStream.close();
-            inputStream.close();
-            System.out.println("File downloaded");
-            return file;
         } else {
             System.out.println("No file to download. Server replied HTTP code: " + responseCode);
         }

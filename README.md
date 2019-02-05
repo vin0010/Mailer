@@ -1,7 +1,8 @@
+[![Build Status](https://travis-ci.org/vin0010/Mailer.svg?branch=master)](https://travis-ci.org/vin0010/Mailer)
+
 # Mailer
 Micro Service responsible of Asynchronous sending of Emails
 
-[![Build Status](https://travis-ci.org/vin0010/Mailer.svg?branch=master)](https://travis-ci.org/vin0010/Mailer)
 
 
 ## Requirement
@@ -24,3 +25,6 @@ URI pointing to the actual document binaries)
 - **Mockito** for unit tests mock
 
 # Architecture
+![Architecture](Architecture.jpg)
+
+# Future Suggestions

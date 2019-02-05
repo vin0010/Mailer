@@ -35,7 +35,9 @@ public class MailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
         	MimeMessageHelper mailMessage = new MimeMessageHelper(message, true);
-        	mailMessage.addAttachment(file.getName(), file);
+        	if(file != null) {
+        		mailMessage.addAttachment(file.getName(), file);
+        	}
         	mailMessage.setTo(mail.getTo());
         	mailMessage.setFrom(mail.getFrom());
 			mailMessage.setSubject(mail.getSubject());
@@ -47,6 +49,5 @@ public class MailService {
 		javaMailSender.send(message);
 		System.out.println("Email Sent!");
 		return "Request Accepted!";
-		//TODO how to get acknowlwdgement that it failed/succeeded
 	}
 }

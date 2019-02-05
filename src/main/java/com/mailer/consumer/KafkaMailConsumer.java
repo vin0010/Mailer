@@ -20,7 +20,7 @@ public class KafkaMailConsumer {
 
 	@KafkaListener(topics = "${kafka.mail.topic.name}", groupId = "${kafka.mail.groupid}", containerFactory = "mailKafkaListenerContainerFactory")
 	public void listenGroupFoo(Mail mail) throws Exception {
-		System.out.println("---->Received Messasge in consumer group " + groupId + ": " + mail);
+		System.out.println("---->Received Messasge in group " + groupId + ": " + mail);
 		System.out.println("About to send mail");
 		latch.countDown();
 		// Attachment service seperated from mail service to make sure attachment is not getting downloaded more than once in case of retry
