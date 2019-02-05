@@ -51,12 +51,14 @@ To make sure things are not over engineered, for starters it uses single consume
 ## Swagger
 - Use http://localhost:9090/swagger-ui.html to access swagger once application deployed
 
-## Kafka
+## Kafka and Zookeeper
 - Follow [![Kafka Setup in Windows](Kafka Setup in Windows)](https://medium.com/@shaaslam/installing-apache-kafka-on-windows-495f6f2fd3c8) to set up kafka in local
 - Follow [![Zookeeper Setup in Windows](Zookeeper Setup in Windows)](https://medium.com/@shaaslam/installing-apache-zookeeper-on-windows-45eda303e835#.fgofwm6n6)  to set up zookeeper
 
 ## Integration Tests
 - Integration tests require running kafka and zookeeper in place.
+- With default configuration, Mailer expects Kafka in port 9092 and Zookeeper in port 2181
+- Ignore annotation in integration tests needs to be removed before running them in local. 
 
 ## Assumptions
 - If a mail failed after n(configurable in application.properties) retries, its considered a failure.
