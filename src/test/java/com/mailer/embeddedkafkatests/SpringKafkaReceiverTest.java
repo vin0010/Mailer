@@ -19,12 +19,13 @@ import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mailer.consumer.KafkaMailConsumer;
 import com.mailer.model.Mail;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @DirtiesContext
 public class SpringKafkaReceiverTest {
@@ -59,7 +60,7 @@ public class SpringKafkaReceiverTest {
             senderProperties);
 
     // create a Kafka template
-    template = new KafkaTemplate<>(producerFactory);
+    template = new KafkaTemplate<String, Mail>(producerFactory);
     // set the default topic to send to
     template.setDefaultTopic(RECEIVER_TOPIC);
 

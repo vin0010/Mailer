@@ -41,9 +41,9 @@ public class SpringKafkaSenderTest {
 	@Autowired
 	private KafkaMessageProducer producer;
 
-	private KafkaMessageListenerContainer<String, String> container;
+	private KafkaMessageListenerContainer<String, Mail> container;
 
-	private BlockingQueue<ConsumerRecord<String, String>> records;
+	private BlockingQueue<ConsumerRecord<String, Mail>> records;
 
 	@ClassRule
 	public static EmbeddedKafkaRule embeddedKafka = new EmbeddedKafkaRule(1, true, SENDER_TOPIC);
@@ -98,8 +98,8 @@ public class SpringKafkaSenderTest {
 		// send the message
 		producer.sendMessage(mail);
 
-		ConsumerRecord<String, String> received = records.poll(10, TimeUnit.SECONDS);
-		assertThat(received, hasValue(mail.toString()));
+		ConsumerRecord<String, Mail> received = records.poll(10, TimeUnit.SECONDS);
+		assertThat(received, hasValue(mail));
 //		 assertThat(received).has(value(mail));
 	}
 }
