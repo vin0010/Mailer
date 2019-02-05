@@ -15,6 +15,11 @@ import org.springframework.stereotype.Service;
 
 import com.mailer.model.Mail;
 
+/**
+ * @author Vinoth.Gopu
+ * 
+ * Mail service to send mails using spring-mail
+ */
 @Service
 @EnableRetry
 public class MailService {
@@ -26,6 +31,13 @@ public class MailService {
 		this.javaMailSender = javaMailSender;
 	}
 	
+	/**
+	 * utility class to send mails
+	 * 
+	 * @param mail mail pojo
+	 * @param file attachment
+	 * @return
+	 */
 	@Async
 	@Retryable(
 			value = { Exception.class }, 

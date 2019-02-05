@@ -64,13 +64,13 @@ public class EmbeddedKafkaConsumerIntegrationTest {
 
 	}
 
-	@Ignore
+	@Ignore // Ignored since it requires live instace of kafka and zookeper
 	@Test
 	public void testReceive() throws Exception {
 		// send the message
 		String greeting = "This message needs to be delivered!";
 		Mail mail = new Mail();
-		mail.setBody("asdasdasdasdsad");
+		mail.setBody("somebody");
 		template.sendDefault(mail);
 		LOGGER.debug("test-sender sent message='{}'", greeting);
 

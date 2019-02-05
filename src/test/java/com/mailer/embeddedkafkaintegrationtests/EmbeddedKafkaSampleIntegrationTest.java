@@ -24,6 +24,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mailer.consumer.KafkaMailConsumer;
 
+/**
+ * @author Vinoth.Gopu
+ * Integration test using embedded kafka
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext
@@ -43,21 +47,20 @@ public class EmbeddedKafkaSampleIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		// set up the Kafka producer properties
 		Map<String, Object> senderProperties = KafkaTestUtils
 				.senderProps(embeddedKafka.getEmbeddedKafka().getBrokersAsString());
 
-		// create a Kafka producer factory
 		ProducerFactory<String, String> producerFactory = new DefaultKafkaProducerFactory<String, String>(
 				senderProperties);
 
-		// create a Kafka template
 		template = new KafkaTemplate<>(producerFactory);
-		// set the default topic to send to
 		template.setDefaultTopic(RECEIVER_TOPIC);
 
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	@Ignore
 	@Test
 	public void testReceive() throws Exception {

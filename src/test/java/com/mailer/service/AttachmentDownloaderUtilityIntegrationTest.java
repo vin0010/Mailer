@@ -14,7 +14,7 @@ import com.mailer.utility.AttachmentDownloaderUtility;
 
 /**
  * @author Vinoth.Gopu
- *
+ * Integration test for attachment download utility
  */
 public class AttachmentDownloaderUtilityIntegrationTest {
 

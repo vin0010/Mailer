@@ -15,9 +15,17 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author Vinoth.Gopu
+ *
+ * Swagger configuration class
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+	/**
+	 * @return Swagger api config
+	 */
 	@Bean
 	public Docket api() {
 		return new Docket(
@@ -29,6 +37,9 @@ public class SwaggerConfig {
 				.build();
 	}
 
+	/**
+	 * @return swagger documentation
+	 */
 	private ApiInfo apiInfo() {
 		@SuppressWarnings("rawtypes")
 		List<VendorExtension> vendorExtensions = new ArrayList<VendorExtension>();

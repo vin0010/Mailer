@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mailer.model.Mail;
-import com.mailer.producer.KafkaMessageProducer;
+import com.mailer.producer.KafkaMailProducer;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +29,7 @@ public class MailController {
 
 	private Logger logger = LoggerFactory.getLogger(MailController.class);
 	@Autowired
-	private KafkaMessageProducer messageProducer;
+	private KafkaMailProducer messageProducer;
 
 	/**
 	 * @param message Mail pojo

@@ -13,7 +13,7 @@ import com.mailer.model.Mail;
 
 /**
  * @author Vinoth.Gopu
- *
+ * Test class for mail controller
  */
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
@@ -30,13 +30,8 @@ public class MailControllerTest {
 	 */
 	@Test
 	public void sendMailTest() throws Exception {
-
 		Mockito.when(mailController.send(Mockito.any(Mail.class))).thenReturn("Request Accepted!");
-
 		String response = mailController.send(new Mail());
-
 		assertEquals(response, "Request Accepted!");
-
 	}
-
 }

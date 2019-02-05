@@ -18,7 +18,7 @@ import com.mailer.model.Mail;
 
 /**
  * @author Vinoth.Gopu
- *
+ * Unit test for mail service
  */
 
 @SpringBootTest

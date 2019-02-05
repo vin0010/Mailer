@@ -15,12 +15,22 @@ import com.mailer.serializer.MailSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Vinoth.Gopu
+ * 
+ * Kafka Producer configuration class
+ *
+ */
 @Configuration
-public class KafkaProducerConfig {
+public class KafkaMailProducerConfig {
 
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
+    /**
+     * Producer factory bean creaion
+     * @return ProducerFactory bean
+     */
     @Bean
     public ProducerFactory<String, Mail> mailProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
@@ -30,11 +40,17 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(configProps);
     }
     
+    /**
+     * @return KafkaMailProducer bean
+     */
     @Bean
-    public KafkaMessageProducer messageProducer() {
-        return new KafkaMessageProducer();
+    public KafkaMailProducer messageProducer() {
+        return new KafkaMailProducer();
     }
     
+    /**
+     * @return kafka template used by producer to access kafka topics
+     */
     @Bean
     public KafkaTemplate<String, Mail> mailKafkaTemplate() {
         return new KafkaTemplate<String, Mail>(mailProducerFactory());
