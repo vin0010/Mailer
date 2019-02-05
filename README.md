@@ -52,8 +52,8 @@ To make sure things are not over engineered, for starters it uses single consume
 - Use http://localhost:9090/swagger-ui.html to access swagger once application deployed
 
 ## Kafka and Zookeeper
-- Follow [![Kafka Setup in Windows](Kafka Setup in Windows)](https://medium.com/@shaaslam/installing-apache-kafka-on-windows-495f6f2fd3c8) to set up kafka in local
-- Follow [![Zookeeper Setup in Windows](Zookeeper Setup in Windows)](https://medium.com/@shaaslam/installing-apache-zookeeper-on-windows-45eda303e835#.fgofwm6n6)  to set up zookeeper
+- Follow [Kafka Setup in Windows](https://medium.com/@shaaslam/installing-apache-kafka-on-windows-495f6f2fd3c8) to set up kafka in local
+- Follow [Zookeeper Setup in Windows](https://medium.com/@shaaslam/installing-apache-zookeeper-on-windows-45eda303e835#.fgofwm6n6)  to set up zookeeper
 
 ## Integration Tests
 - Integration tests require running kafka and zookeeper in place.
