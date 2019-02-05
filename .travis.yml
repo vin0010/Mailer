@@ -4,5 +4,8 @@ install: true
 
 jdk:
 - oraclejdk8
+
 env:
-- CMD="mvn clean install -DskipTests"
+  global:
+  - ZOOKEEPER_PEERS=localhost:2181
+  - KAFKA_PEERS=localhost:9092
