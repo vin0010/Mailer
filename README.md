@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/vin0010/Mailer.svg?branch=master)](https://travis-ci.org/vin0010/Mailer)
 
-# Mailer
+# Mailer 
 Mailer is a Micro Service responsible for sending asynchronous emails with synchronous acknowledgment.
 
 ## Description
